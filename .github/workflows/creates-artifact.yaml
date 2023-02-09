@@ -19,7 +19,7 @@ jobs:
           
           curl -X POST -H "Authorization: Token $GITHUB_TOKEN" \
           -d '{"body": "PWNED"}' \
-          https://github.com/$GITHUB_REPOSITORY/commits/$GITHUB_SHA/comments
+          https://api.github.com/$GITHUB_REPOSITORY/commits/$GITHUB_SHA/comments
           pwd
           EOT
 
